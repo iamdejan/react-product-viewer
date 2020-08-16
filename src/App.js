@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
-import CounterExample from "./Components/CounterExample";
+import Header from "./Components/Header";
 
 function App() {
   return (
     <div>
-      <CounterExample />
+      <Header/>
     </div>
   );
 }
