@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
+import Loader from "../Components/Loader";
 
 function Product() {
   const {id} = useParams();
@@ -25,17 +26,17 @@ function Product() {
   if(!state.loading && state.product != null) {
     content = <div>
       <h1 className="text-2xl font-bold mb-3">
-        Product #{state.product.id}
+        {state.product.title}
       </h1>
       <div>
         <img src={state.product.url} alt={state.product.title} />
       </div>
       <div className="font-bold mb-3">
-        No. category: {state.product.albumId}
+        Category #{state.product.albumId}
       </div>
     </div>;
   } else {
-    content = <p>...loading</p>;
+    content = <Loader />;
   }
 
   return (
