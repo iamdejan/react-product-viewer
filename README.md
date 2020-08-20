@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Product Viewer
+
+This project is based on [React Crash Course 2020](https://www.youtube.com/watch?v=mACw_G-okPE) video.
 
 ## Available Scripts
 
