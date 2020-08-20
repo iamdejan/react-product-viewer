@@ -9,20 +9,31 @@ function Product() {
 
   const [state, setState] = useState({
     loading: true,
-    product: null
+    product: null,
+    error: null,
   });
-
-  let content = null;
 
   useEffect(() => {
     axios.get(url).then(response => {
       setState({
         loading: false,
-        product: response.data
+        product: response.data,
+        error: null,
+      });
+    }).catch(reason => {
+      console.log(JSON.stringify(reason));
+      setState({
+        loading: false,
+        product: null,
+        error: {
+          code: 0,
+          message: reason.toString()
+        }
       });
     });
   }, [url]);
 
+  let content = null;
   if(!state.loading && state.product != null) {
     content = <div>
       <h1 className="text-2xl font-bold mb-3">
@@ -35,7 +46,12 @@ function Product() {
         Category #{state.product.albumId}
       </div>
     </div>;
-  } else {
+  } else if(!state.loading && state.error) {
+    content = <div className="font-bold text-2xl text-center text-red-700">
+      <p>There was an error.</p>
+      <p>Please try again later.</p>
+    </div>;
+  } else if(state.loading) {
     content = <Loader />;
   }
 
