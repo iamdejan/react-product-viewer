@@ -4,16 +4,17 @@ import {useParams} from 'react-router-dom';
 import Loader from "../Components/Loader";
 
 function Product() {
-  const {id} = useParams();
-  const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
-
   const [state, setState] = useState({
     loading: true,
     product: null,
     error: null,
   });
 
+  const {id} = useParams();
+  const url = `https://jsonplaceholder.typicode.com/photos/${id}`;
+
   useEffect(() => {
+    console.log(`Get photo by id ${id}...`);
     axios.get(url).then(response => {
       setState({
         loading: false,
@@ -31,7 +32,7 @@ function Product() {
         }
       });
     });
-  }, [url]);
+  }, [url, id]);
 
   let content = null;
   if(!state.loading && state.product != null) {

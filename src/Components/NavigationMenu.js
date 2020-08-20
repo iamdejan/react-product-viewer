@@ -5,7 +5,7 @@ function NavigationMenu(props) {
   return (
     <div>
       <div className="font-bold">
-        This is the menu.
+        Menu
       </div>
       <ul>
         <li>
